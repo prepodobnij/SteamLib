@@ -34,3 +34,7 @@ func ShowUserLibrary(g []*Game) {
 	}
 
 }
+
+func FindByDev() {
+
+}
