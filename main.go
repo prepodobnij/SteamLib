@@ -8,20 +8,20 @@ import (
 )
 
 // Необходимые функции:
-// 1. Установка/удаление игры (изменение флага Installed)
-// 2. Поиск игр по разработчику
-// 3. Подсчет игр по жанру
-// 4. Вывод самых играемых игр (сортировка по PlayHours)
-// 5. Рекомендации по жанрам (на основе мапы)
+// 1. Установка/удаление игры (изменение флага Installed)   done
+// 2. Поиск игр по разработчику							    done
+// 3. Подсчет игр по жанру									not
+// 4. Вывод самых играемых игр (сортировка по PlayHours)	not
+// 5. Рекомендации по жанрам (на основе мапы)				not
 
 func main() {
 	userLibrary := []*games.Game{}
 
-	/* game1 := games.Game{
+	game1 := games.Game{
 		Title:     "GTA 5",
 		Developer: "Rockstar",
 		Year:      2013,
-		Genre:     "Open world",
+		Genre:     "action",
 		Installed: true,
 		PlayHours: 222.6,
 	}
@@ -29,7 +29,7 @@ func main() {
 		Title:     "Read Dead Redemption 2",
 		Developer: "Rockstar",
 		Year:      2018,
-		Genre:     "Open world",
+		Genre:     "action-adventury",
 		Installed: true,
 		PlayHours: 117.8,
 	}
@@ -44,7 +44,7 @@ func main() {
 
 	userLibrary = append(userLibrary, &game1)
 	userLibrary = append(userLibrary, &game2)
-	userLibrary = append(userLibrary, &game3) */
+	userLibrary = append(userLibrary, &game3)
 
 	for {
 		fmt.Println("Добро пожаловать в Steam!")
@@ -84,6 +84,8 @@ func main() {
 
 		case 4:
 			games.FindByDev(userLibrary)
+		case 5:
+			games.CountByGenre(userLibrary)
 		}
 	}
 

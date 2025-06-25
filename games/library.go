@@ -21,8 +21,9 @@ func ShowUserLibrary(g []*Game) {
 		fmt.Println("Ваша библиотека пуста :(")
 		time.Sleep(time.Second * 2)
 	} else {
-		status := "Установлена"
+
 		for _, v := range g {
+			status := "Установлена"
 			if !v.Installed {
 				status = "Не установлена"
 			}
@@ -55,8 +56,34 @@ func FindByDev(arr []*Game) {
 
 	if len(devArr) == 0 {
 		fmt.Printf("Игр от разработчика %s не найдено\n", dev)
+		time.Sleep(time.Second * 2)
 	} else {
 		ShowUserLibrary(devArr)
 	}
+
+}
+
+func CountByGenre(arr []*Game) {
+	gameGenres := map[string]int{
+		"action":           0,
+		"action-adventury": 0,
+		"adventury":        0,
+		"role-playing":     0,
+		"strategy":         0,
+		"simulation":       0,
+		"RPG":              0,
+	}
+
+	for _, v := range arr {
+		if _, ok := gameGenres[v.Genre]; ok {
+			gameGenres[v.Genre] += 1
+		}
+	}
+	for k, v := range gameGenres {
+		if v > 0 {
+			fmt.Println(k, v)
+		}
+	}
+	time.Sleep(time.Second * 2)
 
 }
