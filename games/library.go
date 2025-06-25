@@ -1,9 +1,8 @@
 package games
 
 import (
-	"bufio"
 	"fmt"
-	"os"
+	"study/scaner"
 )
 
 type Game struct {
@@ -16,7 +15,7 @@ type Game struct {
 }
 
 func ShowUserLibrary(g []*Game) {
-	scaner := bufio.NewScanner(os.Stdin)
+
 	for _, v := range g {
 		fmt.Printf("\nНазвание: %v\nразработчик: %v\nгод выпуска: %v\nЖанр: %v\nУстановленна: %v\nЧасов в игре: %v\n", v.Title, v.Developer, v.Year, v.Genre, v.Installed, v.PlayHours)
 		fmt.Println("____________________________________________________________")
@@ -24,8 +23,7 @@ func ShowUserLibrary(g []*Game) {
 
 	for {
 		fmt.Print("Выйти в главное меню (да/нет): ")
-		scaner.Scan()
-		exit := scaner.Text()
+		exit := scaner.ScannerText()
 		if exit == "да" {
 			break
 		} else {
@@ -35,6 +33,6 @@ func ShowUserLibrary(g []*Game) {
 
 }
 
-func FindByDev() {
+/* func FindByDev(arr []*Game) {
 
-}
+} */

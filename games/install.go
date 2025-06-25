@@ -6,6 +6,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"study/scaner"
 )
 
 func AddNewGame(arr []*Game) []*Game {
@@ -64,15 +65,14 @@ func AddNewGame(arr []*Game) []*Game {
 
 func DeleteGame(arr []*Game) {
 	fmt.Print("Введите название игры которой хотите удалить: ")
-	scaner := bufio.NewScanner(os.Stdin)
-	if scaner.Scan() {
-		text := scaner.Text()
-		if text != "" {
-			for _, v := range arr {
-				if strings.EqualFold(text, v.Title) {
-					v.Installed = false
-				}
+	text := scaner.ScannerText()
+
+	if scaner.ScannerText() != "" {
+		for _, v := range arr {
+			if strings.EqualFold(text, v.Title) {
+				v.Installed = false
 			}
 		}
 	}
+
 }
