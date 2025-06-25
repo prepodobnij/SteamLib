@@ -65,14 +65,20 @@ func AddNewGame(arr []*Game) []*Game {
 
 func DeleteGame(arr []*Game) {
 	fmt.Print("Введите название игры которой хотите удалить: ")
-	text := scaner.ScannerText()
+	text := scaner.ScannerText() // Считываем только один раз!
 
-	if scaner.ScannerText() != "" {
-		for _, v := range arr {
-			if strings.EqualFold(text, v.Title) {
-				v.Installed = false
-			}
+	found := false
+	for _, v := range arr {
+		if strings.EqualFold(text, v.Title) {
+			v.Installed = false
+			found = true
 		}
+	}
+
+	if !found {
+		fmt.Printf("Игра '%s' не найдена\n", text)
+	} else {
+		fmt.Printf("Игра '%s' успешно удалена\n", text)
 	}
 
 }

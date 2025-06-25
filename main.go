@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"study/games"
 	"study/scaner"
+	"time"
 )
 
 // Необходимые функции:
@@ -15,6 +16,36 @@ import (
 
 func main() {
 	userLibrary := []*games.Game{}
+
+	/* game1 := games.Game{
+		Title:     "GTA 5",
+		Developer: "Rockstar",
+		Year:      2013,
+		Genre:     "Open world",
+		Installed: true,
+		PlayHours: 222.6,
+	}
+	game2 := games.Game{
+		Title:     "Read Dead Redemption 2",
+		Developer: "Rockstar",
+		Year:      2018,
+		Genre:     "Open world",
+		Installed: true,
+		PlayHours: 117.8,
+	}
+	game3 := games.Game{
+		Title:     "The Witcher 3",
+		Developer: "CDPR",
+		Year:      2015,
+		Genre:     "RPG",
+		Installed: true,
+		PlayHours: 240.4,
+	}
+
+	userLibrary = append(userLibrary, &game1)
+	userLibrary = append(userLibrary, &game2)
+	userLibrary = append(userLibrary, &game3) */
+
 	for {
 		fmt.Println("Добро пожаловать в Steam!")
 		fmt.Println("--------Меню--------")
@@ -44,7 +75,15 @@ func main() {
 		case 2:
 			userLibrary = games.AddNewGame(userLibrary)
 		case 3:
-			games.DeleteGame(userLibrary)
+			if len(userLibrary) == 0 {
+				fmt.Println("Ваша библиотека пуста")
+				time.Sleep(time.Second * 2)
+			} else {
+				games.DeleteGame(userLibrary)
+			}
+
+		case 4:
+			games.FindByDev(userLibrary)
 		}
 	}
 
