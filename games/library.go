@@ -103,3 +103,30 @@ func CountByGenre(arr []*Game) {
 	time.Sleep(time.Second * 2)
 
 }
+
+func PlayestGames(arr []*Game) {
+
+	if len(arr) == 0 {
+		fmt.Println("Библиотека игр пуста.")
+		return
+	}
+
+	// Создаём копию слайса, чтобы не изменять оригинальный порядок
+	playestArr := make([]*Game, len(arr))
+	copy(playestArr, arr)
+
+	// Сортировка пузырьком по убыванию часов
+	n := len(playestArr)
+	for i := 0; i < n-1; i++ {
+		for j := 0; j < n-i-1; j++ {
+			if playestArr[j].PlayHours < playestArr[j+1].PlayHours {
+				// Меняем местами указатели на игры
+				playestArr[j], playestArr[j+1] = playestArr[j+1], playestArr[j]
+			}
+		}
+	}
+
+	// Выводим отсортированный список
+	ShowUserLibrary(playestArr)
+
+}

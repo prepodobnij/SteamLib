@@ -86,6 +86,8 @@ func main() {
 			games.FindByDev(userLibrary)
 		case 5:
 			games.CountByGenre(userLibrary)
+		case 6:
+			games.PlayestGames(userLibrary)
 		}
 	}
 
