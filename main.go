@@ -10,7 +10,7 @@ import (
 // Необходимые функции:
 // 1. Установка/удаление игры (изменение флага Installed)   done
 // 2. Поиск игр по разработчику							    done
-// 3. Подсчет игр по жанру									not
+// 3. Подсчет игр по жанру									done
 // 4. Вывод самых играемых игр (сортировка по PlayHours)	not
 // 5. Рекомендации по жанрам (на основе мапы)				not
 
@@ -21,7 +21,7 @@ func main() {
 		Title:     "GTA 5",
 		Developer: "Rockstar",
 		Year:      2013,
-		Genre:     "action",
+		Genre:     "экшн",
 		Installed: true,
 		PlayHours: 222.6,
 	}
@@ -29,7 +29,7 @@ func main() {
 		Title:     "Read Dead Redemption 2",
 		Developer: "Rockstar",
 		Year:      2018,
-		Genre:     "action-adventury",
+		Genre:     "экшн-приключение",
 		Installed: true,
 		PlayHours: 117.8,
 	}
@@ -37,7 +37,7 @@ func main() {
 		Title:     "The Witcher 3",
 		Developer: "CDPR",
 		Year:      2015,
-		Genre:     "RPG",
+		Genre:     "РПГ",
 		Installed: true,
 		PlayHours: 240.4,
 	}

@@ -64,26 +64,42 @@ func FindByDev(arr []*Game) {
 }
 
 func CountByGenre(arr []*Game) {
+	var genreArr []*Game
+	finded := false //флаг что все игры найдены
+
 	gameGenres := map[string]int{
-		"action":           0,
-		"action-adventury": 0,
-		"adventury":        0,
-		"role-playing":     0,
-		"strategy":         0,
-		"simulation":       0,
-		"RPG":              0,
+		"экшн":             0,
+		"экшн-приключение": 0,
+		"приключение":      0,
+		"ролевая":          0,
+		"стратегия":        0,
+		"симулятор":        0,
+		"РПГ":              0,
 	}
 
-	for _, v := range arr {
-		if _, ok := gameGenres[v.Genre]; ok {
+	fmt.Print("Введите жанр:")
+	genre := scaner.ScannerText()
+
+	for _, v := range arr { //проходим по массиву
+		if _, ok := gameGenres[v.Genre]; ok { //есть ли в мапе ключ v.Genrt
 			gameGenres[v.Genre] += 1
+			if genre == v.Genre { //если введенный жанр есть в массиве, то добавляем его в слайс
+				genreArr = append(genreArr, v)
+			}
 		}
 	}
+
 	for k, v := range gameGenres {
-		if v > 0 {
-			fmt.Println(k, v)
+		if k == genre && len(gameGenres) != 0 { //если значение ключа равно введенному жанру и слайс не пустой то выполняется блок кода
+			fmt.Printf("У вас %v игр с жанром %v:\n", v, k)
+			ShowUserLibrary(genreArr)
+			finded = true
 		}
 	}
+	if !finded {
+		fmt.Println("У вас нет игр данного жанра")
+	}
+
 	time.Sleep(time.Second * 2)
 
 }
