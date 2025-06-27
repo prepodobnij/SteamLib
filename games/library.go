@@ -66,32 +66,24 @@ func FindByDev(arr []*Game) {
 func CountByGenre(arr []*Game) {
 	var genreArr []*Game
 	finded := false //флаг что все игры найдены
+	gameGenres := make(map[string]int)
 
-	gameGenres := map[string]int{
-		"экшн":             0,
-		"экшн-приключение": 0,
-		"приключение":      0,
-		"ролевая":          0,
-		"стратегия":        0,
-		"симулятор":        0,
-		"РПГ":              0,
+	for _, game := range arr {
+		gameGenres[game.Genre]++
 	}
 
 	fmt.Print("Введите жанр:")
 	genre := scaner.ScannerText()
 
 	for _, v := range arr { //проходим по массиву
-		if _, ok := gameGenres[v.Genre]; ok { //есть ли в мапе ключ v.Genrt
-			gameGenres[v.Genre] += 1
-			if genre == v.Genre { //если введенный жанр есть в массиве, то добавляем его в слайс
-				genreArr = append(genreArr, v)
-			}
+		if genre == v.Genre { //если введенный жанр есть в массиве, то добавляем его в слайс
+			genreArr = append(genreArr, v)
 		}
 	}
 
 	for k, v := range gameGenres {
 		if k == genre && len(gameGenres) != 0 { //если значение ключа равно введенному жанру и слайс не пустой то выполняется блок кода
-			fmt.Printf("У вас %v игр с жанром %v:\n", v, k)
+			fmt.Printf("У вас %v игр с жанром %s:\n", v, k)
 			ShowUserLibrary(genreArr)
 			finded = true
 		}
@@ -129,4 +121,32 @@ func PlayestGames(arr []*Game) {
 	// Выводим отсортированный список
 	ShowUserLibrary(playestArr)
 
+}
+
+func RecommendedGenre(arr []*Game) {
+
+	if len(arr) == 0 {
+		fmt.Println("Ваша библиотека пуста")
+		time.Sleep(time.Second * 2)
+		return
+	}
+
+	genreCount := make(map[string]int) //создается пустая мапа
+
+	for _, game := range arr {
+		genreCount[game.Genre]++ // Для каждого жанра увеличиваем счетчик
+	} // Если жанр встречается впервые - создается новая запись
+
+	maxCount := 0
+	recommended := ""
+	for genre, count := range genreCount {
+		// Если текущий жанр имеет больше игр, чем текущий максимум
+		if count > maxCount {
+			maxCount = count    // Обновляем максимальное количество
+			recommended = genre // Запоминаем жанр-лидер
+		}
+	}
+
+	fmt.Printf("Рекомендованный жанр на основе ваших предпочтений: %s\n", recommended)
+	time.Sleep(time.Second * 2)
 }
