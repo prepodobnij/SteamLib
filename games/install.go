@@ -65,7 +65,7 @@ func AddNewGame(arr []*Game) []*Game {
 
 func DeleteGame(arr []*Game) {
 	fmt.Print("Введите название игры которой хотите удалить: ")
-	text := scaner.ScannerText() // Считываем только один раз!
+	text := scaner.ScannerText() 
 
 	found := false
 	for _, v := range arr {
